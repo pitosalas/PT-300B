@@ -56,11 +56,25 @@ python3 status.py
 
 Reports tape width, tape type and any errors (no tape, cover open, cutter jam, weak batteries, overheating). It doesn't need the virtualenv.
 
+## Claude Code skill
+
+`skill/SKILL.md` is a [Claude Code](https://claude.com/claude-code) skill. With it installed, you can ask Claude in plain language, for example *"label maker - make 3 labels, 1.5" long, with my email and phone on two lines"*. Claude works out the options, asks about anything missing or ambiguous, shows you a preview, and prints once you confirm.
+
+To install it, run this from the repo directory. It fills in this checkout's real path:
+
+```
+mkdir -p ~/.claude/skills/label-maker
+sed "s|/path/to/PT-300B|$PWD|g" skill/SKILL.md > ~/.claude/skills/label-maker/SKILL.md
+```
+
+Start a new Claude Code session, then say "label maker …" or type `/label-maker`. If you move the repo later, run the install again.
+
 ## Files
 
 - `print_label.py`: renders the text, builds the raster print job and sends it.
 - `status.py`: Bluetooth serial connection, re-pairing, and status query and decoding.
-- `preview.png`: the most recent rendered label.
+- `skill/SKILL.md`: Claude Code skill (see above).
+- `preview.png`: the most recent rendered label (not committed).
 
 ## How it works
 
